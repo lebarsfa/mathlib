@@ -11,7 +11,7 @@
 # Version information for mathlib
 m4_define([mathlib_major_version], [2])
 m4_define([mathlib_minor_version], [1])
-m4_define([mathlib_micro_version], [0])
+m4_define([mathlib_micro_version], [1])
 m4_define([mathlib_version], ["mathlib_major_version.mathlib_minor_version.mathlib_micro_version"])
 m4_define([mathlib_release], [mathlib_major_version.mathlib_minor_version])
 m4_define([mathlib_interface_age], [0])
@@ -19,7 +19,7 @@ m4_define([mathlib_binary_age], [0])
 dnl Version number. Do not forget to modify it also in AC_INIT() below
 MATHLIB_MAJOR_VERSION=2
 MATHLIB_MINOR_VERSION=1
-MATHLIB_PATCH_VERSION=0
+MATHLIB_PATCH_VERSION=1
 MATHLIB_RPM_RELEASE=1
 MATHLIB_VERSION=${MATHLIB_MAJOR_VERSION}.${MATHLIB_MINOR_VERSION}.${MATHLIB_PATCH_VERSION}
 AC_SUBST(MATHLIB_MAJOR_VERSION)
@@ -29,7 +29,7 @@ AC_SUBST(MATHLIB_RPM_RELEASE)
 
 dnl Using a literal for the version number here, since
 dnl newer versions of autoconf do not allow shell substitutions
-AC_INIT([mathlib],[2.1.0])
+AC_INIT([mathlib],[2.1.1])
 AC_CONFIG_SRCDIR(src/MathLib.h)
 dnl AC_PREREQ(2.13)
 
@@ -50,6 +50,7 @@ AC_SUBST(LT_RELEASE)
 LT_PREREQ([2.2.6])
 LT_INIT([dlopen])
 
+AC_C_BIGENDIAN
 
 dnl options
 AC_ARG_WITH(xlc,[ --with-xlc	Under AIX, use the xlc even if gcc exists])
@@ -98,6 +99,10 @@ rs6000-* | powerpc-*)
 *-sun-*)
 	AC_DEFINE(MATHLIB_SUN,1,
 	          [Define this if your system is SUN based])
+	;;
+aarch64-*-linux-*)
+	AC_DEFINE(MATHLIB_AARCH64,1,
+		[Define this if your system is ARM64 based])
 	;;
 *)
 	AC_MSG_ERROR(Sorry, this system is not yet supported by mathlib)

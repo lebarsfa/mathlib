@@ -10,6 +10,8 @@
 #     include "BCB_endian.h"
 #elif MATHLIB_MSVC
 #     include "MSVC_endian.h"
+#elif MATHLIB_AARCH64
+#     include "AARCH64_endian.h"
 #else
 #error "Unsupported platform"
 #endif

@@ -6,4 +6,6 @@
 #   include "IX86MACOSX_DPChange.h"
 #elif MATHLIB_MSVC
 #     include "MSVC_DPChange.h"
+elif MATHLIB_AARCH64
+#     include "AARCH64_DPChange.h"
 #endif
