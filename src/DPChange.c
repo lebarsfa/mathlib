@@ -1,13 +1,53 @@
 #include "mathlib_config.h"
 
-#if ((MATHLIB_LINUX || MATHLIB_MINGW) && !X86_64BITS)
+/*
+See https://sourceforge.net/p/predef/wiki/Home/,
+https://learn.microsoft.com/en-us/cpp/preprocessor/predefined-macros
+*/
+#if defined(__linux__) && defined(__x86_64__)
+#   if HAVE_FENV_H
+#      include "LINUX64_DPChange.c"
+#   else
+#      include "LINUX_DPChange.c"
+#   endif /* HAVE_FENV_H */
+#elif defined(__linux__) && defined(__i386__)
 #   include "LINUX_DPChange.c"
-#elif (MATHLIB_LINUX && X86_64BITS)
-#   include "LINUX64_DPChange.c"
-#elif MATHLIB_I86_MACOSX
-#   include "IX86MACOSX_DPChange.c"
-#elif MATHLIB_MSVC
-#     include "MSVC_DPChange.c"
-#elif MATHLIB_AARCH64
-#     include "AARCH64_DPChange.c"
+#elif defined(__APPLE__) && defined(__x86_64__)
+#   if HAVE_FENV_H
+#      include "LINUX64_DPChange.c"
+#   else
+#      include "LINUX_DPChange.c"
+#   endif /* HAVE_FENV_H */
+#elif (defined(_MSC_VER) || defined(__BORLANDC__)) && defined(_M_X64)
+#   if HAVE_FENV_H
+#      include "AARCH64_DPChange.c"
+#   else
+#      include "MSVC_DPChange.c"
+#   endif /* HAVE_FENV_H */
+#elif (defined(_MSC_VER) || defined(__BORLANDC__)) && defined(_M_IX86)
+#   if HAVE_FENV_H
+#      include "AARCH64_DPChange.c"
+#   else
+#      include "MSVC_DPChange.c"
+#   endif /* HAVE_FENV_H */
+#elif defined(__MINGW32__) && (defined(__x86_64__) || defined(_M_X64))
+/* https://sourceforge.net/p/mingw-w64/bugs/541/ ? */
+#   if HAVE_FENV_H
+#      include "AARCH64_DPChange.c"
+#   else
+#      include "LINUX_DPChange.c"
+#   endif /* HAVE_FENV_H */
+#elif defined(__MINGW32__) && (defined(__i386__) || defined(_M_IX86))
+/* https://sourceforge.net/p/mingw-w64/bugs/541/ ? */
+#   if HAVE_FENV_H
+#      include "AARCH64_DPChange.c"
+#   else
+#      include "LINUX_DPChange.c"
+#   endif /* HAVE_FENV_H */
+#elif defined(__arm__) || defined(_ARM_)
+#   include "AARCH64_DPChange.c"
+#elif defined(__aarch64__) || defined(_ARM64_)
+#   include "AARCH64_DPChange.c"
+#else
+#   include "AARCH64_DPChange.c"
 #endif

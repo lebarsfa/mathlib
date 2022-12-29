@@ -1,11 +1,7 @@
 #include "mathlib_config.h"
 
-#if (MATHLIB_LINUX || MATHLIB_MINGW)
+#if defined(_MSC_VER) || defined(__BORLANDC__)
+#   include "MSVC_DPChange.h"
+#else
 #   include "LINUX_DPChange.h"
-#elif MATHLIB_I86_MACOSX
-#   include "IX86MACOSX_DPChange.h"
-#elif MATHLIB_MSVC
-#     include "MSVC_DPChange.h"
-elif MATHLIB_AARCH64
-#     include "AARCH64_DPChange.h"
 #endif

@@ -20,7 +20,8 @@
 unsigned  short OrgDPStatus=0;
 unsigned  short NewDPStatus=0;
 
-#if MATHLIB_MINGW
+
+#if defined(__MINGW32__)
 #  define ORG_DP_STATUS "_OrgDPStatus"
 #  define NEW_DP_STATUS "_NewDPStatus"
 #else

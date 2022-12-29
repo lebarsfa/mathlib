@@ -106,21 +106,35 @@ static int mathlib_fesetenv (const fenv_t *envp)
 #endif /* GETENV_WORKAROUND */
 
 
-
-
 unsigned  short OrgDPStatus=0;
 unsigned  short NewDPStatus=0;
 
-#if MATHLIB_MINGW
-#  define ORG_DP_STATUS "_OrgDPStatus"
-#  define NEW_DP_STATUS "_NewDPStatus"
+/* 
+Warning: even if a control word might exist on almost all platforms, it might
+not be possible to manipulate it the same way...
+*/
+#if defined(__linux__) && (defined(__i386__) || defined(__x86_64__))
+#   define CTRLWORD(v) (v).__control_word
+#elif defined(__linux__) && defined(__aarch64__)
+#   define CTRLWORD(v) (v).__fpcr
+#elif defined(__APPLE__) && defined(__x86_64__)
+#   define CTRLWORD(v) (v).__control
+#elif defined(__APPLE__) && defined(__aarch64__)
+#   define CTRLWORD(v) (v).__fpcr
+/* _Fe_ctl might be larger than an unsigned short... */
+/*
+#elif (defined(_MSC_VER) || defined(__BORLANDC__)) && (defined(_M_IX86) || defined(_M_X64))
+#   define CTRLWORD(v) (v)._Fe_ctl
+*/
+#elif defined(__MINGW32__) && (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_X64))
+#   define CTRLWORD(v) (v).__control_word
+#elif defined(__arm__) || defined(_ARM_)
+#   define CTRLWORD(v) (v).__cw
+#elif defined(__aarch64__) || defined(_ARM64_)
+#   define CTRLWORD(v) (v).__fpcr
 #else
-#  define ORG_DP_STATUS "OrgDPStatus"
-#  define NEW_DP_STATUS "NewDPStatus"
+#   define CTRLWORD(v) (v).__control_word
 #endif
-
-
-#define CTRLWORD(v) (v).__control_word
 
 /* Function to change precision control to double and round mode to nearest */
 /* or even. Function returns unsigned short between 0 and 15 that indicates */
@@ -134,7 +148,7 @@ unsigned short Init_Lib()
   	fenv_t status, tmp;
 	unsigned short tempStatus;
 	FEGETENV(&status);
-	OrgDPStatus = CTRLWORD(status);
+	OrgDPStatus = (unsigned short)CTRLWORD(status);
 	tempStatus =  OrgDPStatus & MaskClearDPR; /* clear relevant 4 bits */
 	NewDPStatus=tempStatus | MaskSetDPR;  /* compute required values */
 	CTRLWORD(status) = NewDPStatus;
@@ -165,7 +179,7 @@ void Exit_Lib(unsigned short status)
      	return;
     }
 	FEGETENV(&cpustatus);
-	NewDPStatus = CTRLWORD(cpustatus);
+	NewDPStatus = (unsigned short)CTRLWORD(cpustatus);
   	LocalStatus = LocalStatus << 8; /* since value is less than 16 the only    */
                                   /* non-zero bits are in positions 0-3      */
       /* after the <<8 the precision and rounding bits are in positions 8-11 */
@@ -178,48 +192,3 @@ void Exit_Lib(unsigned short status)
 #   error "fenv.h not found and no replacement available to deinitialize the library"
 #endif /* HAVE_FENV_H */
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

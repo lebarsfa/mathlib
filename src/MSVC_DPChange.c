@@ -33,15 +33,27 @@ unsigned short Init_Lib()
 {
   unsigned short tempStatus;
 /* get original status word            */
+#ifdef __BORLANDC__
+  asm {
+    fstcw WORD PTR OrgDPStatus
+  } 
+#else
   __asm {
     fstcw WORD PTR OrgDPStatus
   } 
+#endif
   tempStatus= OrgDPStatus & MaskClearDPR; /* clear relevant 4 bits */
   NewDPStatus=tempStatus | MaskSetDPR;  /* compute required values */
  /* set control word to required value */
+#ifdef __BORLANDC__
+  asm {
+    fldcw WORD PTR NewDPStatus
+  }
+#else
   __asm {
     fldcw WORD PTR NewDPStatus
   }
+#endif
   OrgDPStatus= OrgDPStatus & MaskDPR;     /* select only bits 8-11 */
   OrgDPStatus= OrgDPStatus >> 8 ;     /* now relevant bits are 0-3 */
   return OrgDPStatus;
@@ -61,62 +73,29 @@ void Exit_Lib(unsigned short status)
      printf("Exit_Lib: argument > 15 error, status=%d\n", LocalStatus);
      return;
     }  
+#ifdef __BORLANDC__
+  asm {
+    fstcw WORD PTR NewDPStatus
+  }
+#else
   __asm {
     fstcw WORD PTR NewDPStatus
   }
+#endif
   LocalStatus = LocalStatus << 8; /* since value is less than 16 the only    */
                                   /* non-zero bits are in positions 0-3      */
       /* after the <<8 the precision and rounding bits are in positions 8-11 */
   NewDPStatus = NewDPStatus & MaskClearDPR;        /* clearing relevant bits */
   OrgDPStatus = NewDPStatus | LocalStatus;     /* resetting to org DPR staus */
   /* setting the processor control word */
+#ifdef __BORLANDC__
+  asm {
+    fldcw WORD PTR OrgDPStatus
+  }
+#else
   __asm {
     fldcw WORD PTR OrgDPStatus
   }
+#endif
   return;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
