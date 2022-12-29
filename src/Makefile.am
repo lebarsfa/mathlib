@@ -1,9 +1,8 @@
 EXTRA_DIST = asincos.tbl  root.tbl    uatan.tbl  uexp.tbl  upow.tbl \
 	     powtwo.tbl   sincos.tbl  ucot.tbl   ulog.tbl  utan.tbl \
-	     LINUX_DPChange.c LINUX64_DPChange.c SUN_DPChange.c AIX_DPChange.c IX86MACOSX_DPChange.c\
-	     mathlib_config_msvc.h \
-	     BCB_DPChange.c BCB_DPChange.h BCB_endian.h MSVC_endian.h \
-	     MSVC_DPChange.h MSVC_DPChange.c 
+	     LINUX_DPChange.h LINUX_DPChange.c LINUX64_DPChange.c \
+		 SUN_DPChange.c AARCH64_DPChange.c \
+	     MSVC_DPChange.h MSVC_DPChange.c
 
 lib_LTLIBRARIES = libultim.la
 
@@ -24,10 +23,9 @@ noinst_HEADERS = \
 	atnat2.h   doasin.h    mpa.h     mpsqrt.h    uasncs.h  ulog.h   usncs.h \
 	atnat.h    dosincos.h  mpatan.h  mydefs.h    ucot.h    upow.h   utan.h  \
 	branred.h  mpexp.h   sincos32.h  uexp.h      urem.h    dla.h    mpa2.h  \
-	mplog.h   trigo.h     ulog2.h   uroot.h	LINUX_DPChange.h SUN_DPChange.h \
-	AIX_DPChange.h IX86MACOSX_DPChange.h \
-	AIX_endian.h IX86_endian.h SUN_endian.h DPChange.h \
-	endian.h BCB_endian.h
+	mplog.h   trigo.h     ulog2.h   uroot.h \
+	LINUX_DPChange.h MSVC_DPChange.h \
+	DPChange.h endian.h
 
 install-data-local:
 	$(mkinstalldirs) $(includedir)
