@@ -1,17 +1,27 @@
 #include "mathlib_config.h"
 
-#if (IX86_CPU)
-#   include "IX86_endian.h"
-#elif MATHLIB_AIX
-#    include "AIX_endian.h"
-#elif MATHLIB_SUN
-#    include "SUN_endian.h"
-#elif MATHLIB_BORLANDC
-#     include "BCB_endian.h"
-#elif MATHLIB_MSVC
-#     include "MSVC_endian.h"
-#elif MATHLIB_AARCH64
-#     include "AARCH64_endian.h"
+/* From https://stackoverflow.com/questions/8978935/detecting-endianness */
+#if defined(__BYTE_ORDER__)&&(__BYTE_ORDER__ == __ORDER_BIG_ENDIAN__)
+#  define BIG_ENDI
+#  undef LITTLE_ENDI
 #else
-#error "Unsupported platform"
+#ifdef WORDS_BIGENDIAN
+#  define BIG_ENDI
+#  undef LITTLE_ENDI
+#else
+#  define LITTLE_ENDI
+#  undef BIG_ENDI
 #endif
+#endif
+
+#ifdef BIG_ENDI
+#define HIGH_HALF 0
+#define  LOW_HALF 1
+#else 
+#ifdef LITTLE_ENDI
+#define HIGH_HALF 1
+#define  LOW_HALF 0
+#endif
+#endif
+
+#define ABS(x)   ((x) <  0  ? -(x) : (x))
