@@ -9,14 +9,38 @@
 /* Define to 1 if you have the <fenv.h> header file. */
 #undef HAVE_FENV_H
 
+/* Define this to 1 if the compiler supports the "-ffloat-store" option */
+#undef HAVE_FFLOAT_STORE_OPTION
+
+/* Define this to 1 if the compiler supports the "-ffp-contract=off" option */
+#undef HAVE_FFP_CONTRACT_OFF_OPTION
+
+/* Define this to 1 if the compiler supports the "-ffp-mode=full" option */
+#undef HAVE_FFP_MODE_FULL_OPTION
+
+/* Define this to 1 if the compiler supports the "-fno-fast-math" option */
+#undef HAVE_FNO_FAST_MATH_OPTION
+
+/* Define this to 1 if the compiler supports the "-fp-model=strict" option */
+#undef HAVE_FP_MODEL_STRICT_OPTION
+
+/* Define this to 1 if the compiler supports the "-fp:strict" option */
+#undef HAVE_FP_STRICT_OPTION
+
+/* Define this to 1 if the compiler supports the "-frounding-math" option */
+#undef HAVE_FROUNDING_MATH_OPTION
+
 /* Define to 1 if you have the <inttypes.h> header file. */
 #undef HAVE_INTTYPES_H
 
-/* Define to 1 if you have the <memory.h> header file. */
-#undef HAVE_MEMORY_H
+/* Define this to 1 if the compiler supports the "-mpc64" option */
+#undef HAVE_MPC64_OPTION
 
 /* Define to 1 if you have the <stdint.h> header file. */
 #undef HAVE_STDINT_H
+
+/* Define to 1 if you have the <stdio.h> header file. */
+#undef HAVE_STDIO_H
 
 /* Define to 1 if you have the <stdlib.h> header file. */
 #undef HAVE_STDLIB_H
@@ -39,24 +63,32 @@
 /* Define this if your system is ix86-based */
 #undef IX86_CPU
 
-/* Define to the sub-directory in which libtool stores uninstalled libraries.
-   */
+/* Define to the sub-directory where libtool stores uninstalled libraries. */
 #undef LT_OBJDIR
 
-/* Define this if your system is ARM64 based */
+/* Define this if your system is an aarch64-based computer under Linux */
 #undef MATHLIB_AARCH64
 
 /* Define this if your system is AIX based */
 #undef MATHLIB_AIX
 
+/* Define this if your system is an arm-based computer under Linux */
+#undef MATHLIB_ARM
+
+/* Define this if your system is a macOS-based arm or compatible */
+#undef MATHLIB_ARM_MACOSX
+
 /* Define this if your system is a cygwin based ix86 or compatible */
 #undef MATHLIB_CYGWIN
 
-/* Define this if your system is a ix86 running MacOSX */
+/* Define this if your system is a macOS-based ix86 or compatible */
 #undef MATHLIB_I86_MACOSX
 
 /* Define this if your system is a linux based ix86 or compatible */
 #undef MATHLIB_LINUX
+
+/* Define this if your system is a mingw based ix86 or compatible */
+#undef MATHLIB_MINGW
 
 /* Define this if your system is SUN based */
 #undef MATHLIB_SUN
@@ -82,7 +114,9 @@
 /* Define to the version of this package. */
 #undef PACKAGE_VERSION
 
-/* Define to 1 if you have the ANSI C header files. */
+/* Define to 1 if all of the C90 standard headers exist (not just the ones
+   required in a freestanding environment). This macro is provided for
+   backward compatibility; new code need not use it. */
 #undef STDC_HEADERS
 
 /* Version number of package */

@@ -11,15 +11,15 @@
 # Version information for mathlib
 m4_define([mathlib_major_version], [2])
 m4_define([mathlib_minor_version], [1])
-m4_define([mathlib_micro_version], [1])
+m4_define([mathlib_micro_version], [2])
 m4_define([mathlib_version], ["mathlib_major_version.mathlib_minor_version.mathlib_micro_version"])
 m4_define([mathlib_release], [mathlib_major_version.mathlib_minor_version])
 m4_define([mathlib_interface_age], [0])
 m4_define([mathlib_binary_age], [0])
-dnl Version number. Do not forget to modify it also in AC_INIT() below
+dnl Version number. Do not forget to modify it also in AC_INIT below
 MATHLIB_MAJOR_VERSION=2
 MATHLIB_MINOR_VERSION=1
-MATHLIB_PATCH_VERSION=1
+MATHLIB_PATCH_VERSION=2
 MATHLIB_RPM_RELEASE=1
 MATHLIB_VERSION=${MATHLIB_MAJOR_VERSION}.${MATHLIB_MINOR_VERSION}.${MATHLIB_PATCH_VERSION}
 AC_SUBST(MATHLIB_MAJOR_VERSION)
@@ -29,9 +29,9 @@ AC_SUBST(MATHLIB_RPM_RELEASE)
 
 dnl Using a literal for the version number here, since
 dnl newer versions of autoconf do not allow shell substitutions
-AC_INIT([mathlib],[2.1.1])
+AC_INIT([mathlib],[2.1.2])
 AC_CONFIG_SRCDIR(src/MathLib.h)
-dnl AC_PREREQ(2.13)
+dnl AC_PREREQ([2.71])
 
 AM_MAINTAINER_MODE([disable])
 
@@ -55,7 +55,7 @@ AC_C_BIGENDIAN
 dnl options
 AC_ARG_WITH(xlc,[ --with-xlc	Under AIX, use the xlc even if gcc exists])
 
-AM_CONFIG_HEADER(src/mathlib_configuration.h)
+AC_CONFIG_HEADERS(src/mathlib_configuration.h)
 AM_INIT_AUTOMAKE
 
 dnl AC_PROG_MAKE_SET
@@ -304,8 +304,9 @@ dnl Checks for programs.
 AC_PROG_CC
 AC_PROG_CPP
 AC_PROG_INSTALL
-AC_PROG_LIBTOOL
+LT_INIT
 
 AC_PROG_MKDIR_P
 
-AC_OUTPUT([Makefile src/Makefile mathlib.spec])
+AC_CONFIG_FILES([Makefile src/Makefile mathlib.spec])
+AC_OUTPUT
