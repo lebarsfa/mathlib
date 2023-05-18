@@ -46,6 +46,12 @@ ${OTHER_SOURCES_AND_HEADERS_LIST})
 
 # We need this directory, and users of our library will need it too
 #target_include_directories(ultim PUBLIC ../include)
+target_include_directories(ultim 
+	PUBLIC
+        $<INSTALL_INTERFACE:include>
+#	PRIVATE
+#		.
+)
 
 # This depends on (header only) boost
 #target_link_libraries(ultim PRIVATE Boost::boost)

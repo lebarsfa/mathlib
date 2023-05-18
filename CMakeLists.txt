@@ -69,7 +69,7 @@ add_subdirectory(src)
 # From https://gitlab.com/CLIUtils/modern-cmake/-/blob/b47192867e86e5f00f70ec860638a28473edc8bf/chapters/install/installing.md
 # and https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
 install(TARGETS ultim
-        EXPORT ultimTargets
+        EXPORT mathlibTargets
         LIBRARY DESTINATION lib
         ARCHIVE DESTINATION lib
 #        RUNTIME DESTINATION bin
@@ -82,19 +82,19 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/MathLib.h ${CMAKE_CURRENT_SOURCE_D
 
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
-    ultimConfigVersion.cmake
+    mathlibConfigVersion.cmake
     VERSION ${PACKAGE_VERSION}
     COMPATIBILITY AnyNewerVersion
     )
 
-install(EXPORT ultimTargets
-        FILE ultimTargets.cmake
-        NAMESPACE ultim::
-        DESTINATION lib/cmake/ultim
+install(EXPORT mathlibTargets
+        FILE mathlibTargets.cmake
+        NAMESPACE mathlib::
+        DESTINATION share/cmake/mathlib
          )
 
-configure_file(ultimConfig.cmake.in ultimConfig.cmake @ONLY)
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/ultimConfig.cmake"
-              "${CMAKE_CURRENT_BINARY_DIR}/ultimConfigVersion.cmake"
-        DESTINATION lib/cmake/ultim
+configure_file(mathlibConfig.cmake.in mathlibConfig.cmake @ONLY)
+install(FILES "${CMAKE_CURRENT_BINARY_DIR}/mathlibConfig.cmake"
+              "${CMAKE_CURRENT_BINARY_DIR}/mathlibConfigVersion.cmake"
+        DESTINATION share/cmake/mathlib
         )
