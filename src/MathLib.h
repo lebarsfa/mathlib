@@ -36,14 +36,14 @@
 /* See further explanations of usage in DPChange.h                  */
 /********************************************************************/
 
-_MATHLIB_DLL_ unsigned short Init_Lib();
+EXTERN_C MATHLIB_EXPORT unsigned short Init_Lib();
 
 /********************************************************************/
 /* Function that changes the precision and rounding modes to the    */
 /* specified by the argument received. See further explanations in  */
 /* DPChange.h                                                       */
 /********************************************************************/
-_MATHLIB_DLL_  void Exit_Lib(unsigned short);
+EXTERN_C MATHLIB_EXPORT  void Exit_Lib(unsigned short);
 
 
 /* The  asin() function calculates the arc sine of its argument.    */
@@ -51,7 +51,7 @@ _MATHLIB_DLL_  void Exit_Lib(unsigned short);
 /* (between -PI/2 and PI/2).                                        */
 /* If the argument is greater than 1 or less than -1 it returns     */
 /* a NaN.                                                           */
-_MATHLIB_DLL_  double uasin(double );
+EXTERN_C MATHLIB_EXPORT  double uasin(double );
 
 
 /* The  acos() function calculates the arc cosine of its argument.  */
@@ -59,55 +59,55 @@ _MATHLIB_DLL_  double uasin(double );
 /* (between -PI/2 and PI/2).                                        */
 /* If the argument is greater than 1 or less than -1 it returns     */
 /* a NaN.                                                           */
-_MATHLIB_DLL_  double uacos(double );
+EXTERN_C MATHLIB_EXPORT  double uacos(double );
 
 /* The  atan() function calculates the arctanget of its argument.   */
 /* The  function returns the arc tangent in radians                 */
 /* (between -PI/2 and PI/2).                                        */
-_MATHLIB_DLL_  double uatan(double );
+EXTERN_C MATHLIB_EXPORT  double uatan(double );
 
 
 /* The uatan2() function calculates the arc tangent of the two arguments x   */
 /* and y (x is the right argument and y is the left one).The signs of both   */
 /* arguments are used to determine the quadrant of the result.               */
 /* The function returns the result in radians, which is between -PI and PI   */
-_MATHLIB_DLL_  double uatan2(double ,double ); 
+EXTERN_C MATHLIB_EXPORT  double uatan2(double ,double ); 
 
 /* Compute log(x). The base of log is e (natural logarithm)         */
-_MATHLIB_DLL_  double ulog(double );
+EXTERN_C MATHLIB_EXPORT  double ulog(double );
 
 /* Compute log2(x).                                                  */
-_MATHLIB_DLL_  double ulog2(double );
+EXTERN_C MATHLIB_EXPORT  double ulog2(double );
 
 /* Compute e raised to the power of argument x.                     */
-_MATHLIB_DLL_  double uexp(double );
+EXTERN_C MATHLIB_EXPORT  double uexp(double );
 
 /* Compute 2 raised to the power of argument x.                     */
-_MATHLIB_DLL_  double uexp2(double );
+EXTERN_C MATHLIB_EXPORT  double uexp2(double );
 
 /* Compute sin(x). The argument x is assumed to be given in radians.*/
-_MATHLIB_DLL_  double usin(double );
+EXTERN_C MATHLIB_EXPORT  double usin(double );
 
 /* Compute cos(x). The argument x is assumed to be given in radians.*/
-_MATHLIB_DLL_ double ucos(double );
+EXTERN_C MATHLIB_EXPORT double ucos(double );
 
 /* Compute tan(x). The argument x is assumed to be given in radians.*/
-_MATHLIB_DLL_ double utan(double );
+EXTERN_C MATHLIB_EXPORT double utan(double );
 
 /* Compute cotan(x). The argument x is assumed to be given in radians.*/
-_MATHLIB_DLL_ double ucot(double );
+EXTERN_C MATHLIB_EXPORT double ucot(double );
 
 /* Compute the square root of non-negative argument x.              */
 /* If x is negative the returned value is NaN.                      */
-_MATHLIB_DLL_ double usqrt(double );
+EXTERN_C MATHLIB_EXPORT double usqrt(double );
 
 /* Compute x raised to the power of y, where x is the left argument */
 /* and y is the right argument. The function returns a NaN if x<0.  */
 /* If x equals zero it returns -inf                                 */
-_MATHLIB_DLL_ double upow(double , double );
+EXTERN_C MATHLIB_EXPORT double upow(double , double );
 
 /* Computing x mod y, where x is the left argument and y is the     */
 /* right one.                                                       */
-_MATHLIB_DLL_ double uremainder(double , double );
+EXTERN_C MATHLIB_EXPORT double uremainder(double , double );
 
 #endif
