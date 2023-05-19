@@ -6,7 +6,9 @@
 # Optionally glob, but only for CMake 3.12 or later:
 # file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/include/modern/*.hpp")
 #set(HEADER_LIST "${mathlib_SOURCE_DIR}/include/modern/lib.hpp")
-file(GLOB OTHER_SOURCES_AND_HEADERS_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/*.h" "${mathlib_SOURCE_DIR}/*.tbl")
+file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.c")
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.h")
+file(GLOB TABLE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.tbl")
 
 # Make an automatic library - will be static or dynamic based on user setting
 add_library(ultim 
@@ -41,16 +43,16 @@ urem.c
 uroot.c
 usncs.c
 utan.c
-${OTHER_SOURCES_AND_HEADERS_LIST})
-
+${HEADER_LIST}
+${TABLE_LIST})
 
 # We need this directory, and users of our library will need it too
 #target_include_directories(ultim PUBLIC ../include)
 target_include_directories(ultim 
 	PUBLIC
-        $<INSTALL_INTERFACE:include>
-#	PRIVATE
-#		.
+        "$<INSTALL_INTERFACE:include>"
+	PRIVATE
+		"$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/src>"
 )
 
 # This depends on (header only) boost
@@ -58,6 +60,20 @@ target_include_directories(ultim
 
 # All users of this library will need at least C++11
 #target_compile_features(ultim PUBLIC cxx_std_11)
+
+# See https://github.com/friendlyanon/cxx-static-shared-example
+include(GenerateExportHeader)
+generate_export_header(
+    ultim
+    BASE_NAME mathlib
+    EXPORT_FILE_NAME mathlib_configuration.h
+)
+
+if(NOT BUILD_SHARED_LIBS)
+  target_compile_definitions(ultim PUBLIC mathlib_STATIC_DEFINE)
+else()
+  target_compile_definitions(ultim PUBLIC mathlib_SHARED_DEFINE) # For compatibility...
+endif()
 
 include(CheckCCompilerFlag)
 check_c_compiler_flag ("-frounding-math" COMPILER_SUPPORTS_FROUNDING_MATH)
@@ -98,3 +114,7 @@ endif ()
 #  TREE "${PROJECT_SOURCE_DIR}/include"
 #  PREFIX "Header Files"
 #  FILES ${HEADER_LIST})
+source_group(
+  TREE "${PROJECT_SOURCE_DIR}/src"
+  PREFIX "Table Files"
+  FILES ${TABLE_LIST})

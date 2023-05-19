@@ -21,6 +21,11 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
   # Let's nicely support folders in IDEs
   set_property(GLOBAL PROPERTY USE_FOLDERS ON)
 
+  option(BUILD_SHARED_LIBS "Build shared libs" OFF)
+  if(NOT BUILD_SHARED_LIBS)
+    set(CMAKE_POSITION_INDEPENDENT_CODE ON)
+  endif()
+
   # Testing only available if this is the main app
   # Note this needs to be done in the main CMakeLists
   # since it calls enable_testing, which must be in the
@@ -76,7 +81,7 @@ install(TARGETS ultim
 #        INCLUDES DESTINATION include
         )
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/MathLib.h ${CMAKE_CURRENT_SOURCE_DIR}/src/mathlib_config.h #_configuration.h
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/MathLib.h ${CMAKE_CURRENT_SOURCE_DIR}/src/mathlib_config.h ${CMAKE_CURRENT_BINARY_DIR}/src/mathlib_configuration.h
     DESTINATION include
 )
 
