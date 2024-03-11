@@ -28,5 +28,5 @@ noinst_HEADERS = \
 	DPChange.h endian.h
 
 install-data-local:
-	$(mkinstalldirs) $(includedir)
-	$(INSTALL_DATA) $(srcdir)/MathLib.h $(includedir)
+	$(mkinstalldirs) "$(DESTDIR)/$(includedir)"
+	$(INSTALL_DATA) $(srcdir)/MathLib.h "$(DESTDIR)/$(includedir)"
