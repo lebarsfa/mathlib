@@ -91,9 +91,13 @@ write_basic_package_version_file(
     VERSION ${PACKAGE_VERSION}
     COMPATIBILITY AnyNewerVersion
     )
+  
+# Inspired from https://github.com/fmtlib/fmt/blob/7d4662f7ab39f70107b6e8899bcc4076fe947a39/CMakeLists.txt
+export(TARGETS ultim NAMESPACE mathlib::
+        FILE mathlibTargets.cmake)
 
 install(EXPORT mathlibTargets
-        FILE mathlibTargets.cmake
+        #FILE mathlibTargets.cmake
         NAMESPACE mathlib::
         DESTINATION share/cmake/mathlib
          )

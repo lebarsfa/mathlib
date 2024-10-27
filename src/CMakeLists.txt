@@ -46,13 +46,17 @@ utan.c
 ${HEADER_LIST}
 ${TABLE_LIST})
 
+# Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
+add_library(mathlib::ultim ALIAS ultim)
+
 # We need this directory, and users of our library will need it too
 #target_include_directories(ultim PUBLIC ../include)
+# Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
 target_include_directories(ultim 
 	PUBLIC
-        "$<INSTALL_INTERFACE:include>"
-	PRIVATE
+		"$<INSTALL_INTERFACE:include>"
 		"$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/src>"
+		"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
 )
 
 # This depends on (header only) boost
