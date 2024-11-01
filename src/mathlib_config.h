@@ -33,6 +33,9 @@ https://gcc.gnu.org/wiki/Visibility, https://learn.microsoft.com/en-us/cpp/build
 #endif /* DISABLE_MATHLIB_CONFIGURATION_H */
 
 /* Compatibility with existing code */
+#ifndef MATHLIB_EXPORT
+#   define MATHLIB_EXPORT
+#endif /* !MATHLIB_EXPORT */
 #ifdef _MATHLIB_DLL_
 #   undef EXTERN_C
 #   define EXTERN_C
