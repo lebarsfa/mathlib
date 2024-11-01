@@ -6,12 +6,7 @@
 # Optionally glob, but only for CMake 3.12 or later:
 # file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/include/modern/*.hpp")
 #set(HEADER_LIST "${mathlib_SOURCE_DIR}/include/modern/lib.hpp")
-file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.c")
-file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.h")
-file(GLOB TABLE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.tbl")
-
-# Make an automatic library - will be static or dynamic based on user setting
-add_library(ultim 
+set(SOURCE_LIST 
 atnat.c
 atnat2.c
 branred.c
@@ -42,9 +37,12 @@ upow.c
 urem.c
 uroot.c
 usncs.c
-utan.c
-${HEADER_LIST}
-${TABLE_LIST})
+utan.c)
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.h")
+file(GLOB TABLE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.tbl")
+
+# Make an automatic library - will be static or dynamic based on user setting
+add_library(ultim ${SOURCE_LIST} ${HEADER_LIST} ${TABLE_LIST})
 
 # Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
 add_library(mathlib::ultim ALIAS ultim)
