@@ -6,12 +6,7 @@
 # Optionally glob, but only for CMake 3.12 or later:
 # file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/include/modern/*.hpp")
 #set(HEADER_LIST "${mathlib_SOURCE_DIR}/include/modern/lib.hpp")
-file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.c")
-file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.h")
-file(GLOB TABLE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.tbl")
-
-# Make an automatic library - will be static or dynamic based on user setting
-add_library(ultim 
+set(SOURCE_LIST 
 atnat.c
 atnat2.c
 branred.c
@@ -42,15 +37,17 @@ upow.c
 urem.c
 uroot.c
 usncs.c
-utan.c
-${HEADER_LIST}
-${TABLE_LIST})
+utan.c)
+file(GLOB HEADER_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.h")
+file(GLOB TABLE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.tbl")
+
+# Make an automatic library - will be static or dynamic based on user setting
+add_library(ultim ${SOURCE_LIST} ${HEADER_LIST} ${TABLE_LIST})
 
 # Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
 add_library(mathlib::ultim ALIAS ultim)
 
 # We need this directory, and users of our library will need it too
-#target_include_directories(ultim PUBLIC ../include)
 # Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
 target_include_directories(ultim 
 	PUBLIC
@@ -58,12 +55,6 @@ target_include_directories(ultim
 		"$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/src>"
 		"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
 )
-
-# This depends on (header only) boost
-#target_link_libraries(ultim PRIVATE Boost::boost)
-
-# All users of this library will need at least C++11
-#target_compile_features(ultim PUBLIC cxx_std_11)
 
 # See https://github.com/friendlyanon/cxx-static-shared-example
 include(GenerateExportHeader)
@@ -82,35 +73,35 @@ endif()
 include(CheckCCompilerFlag)
 check_c_compiler_flag ("-frounding-math" COMPILER_SUPPORTS_FROUNDING_MATH)
 if (COMPILER_SUPPORTS_FROUNDING_MATH)
-  target_compile_options(ultim PUBLIC "-frounding-math")
+  target_compile_options(ultim PUBLIC -frounding-math)
 endif ()
 check_c_compiler_flag ("-ffloat-store" COMPILER_SUPPORTS_FFLOAT_STORE)
 if (COMPILER_SUPPORTS_FFLOAT_STORE)
-  target_compile_options(ultim PUBLIC "-ffloat-store")
+  target_compile_options(ultim PUBLIC -ffloat-store)
 endif ()
 check_c_compiler_flag ("-fno-fast-math" COMPILER_SUPPORTS_FNO_FAST_MATH)
 if (COMPILER_SUPPORTS_FNO_FAST_MATH)
-  target_compile_options(ultim PUBLIC "-fno-fast-math")
+  target_compile_options(ultim PUBLIC -fno-fast-math)
 endif ()
 check_c_compiler_flag ("-ffp-contract=off" COMPILER_SUPPORTS_FFP_CONTRACT_OFF)  
 if (COMPILER_SUPPORTS_FFP_CONTRACT_OFF)
-  target_compile_options(ultim PUBLIC "-ffp-contract=off")
+  target_compile_options(ultim PUBLIC -ffp-contract=off)
 endif ()
 check_c_compiler_flag ("-ffp-mode=full" COMPILER_SUPPORTS_FFP_MODE_FULL)  
 if (COMPILER_SUPPORTS_FFP_MODE_FULL)
-  target_compile_options(ultim PUBLIC "-ffp-mode=full")
+  target_compile_options(ultim PUBLIC -ffp-mode=full)
 endif ()
 check_c_compiler_flag ("-fp-model=strict" COMPILER_SUPPORTS_FP_MODEL_STRICT)  
 if (COMPILER_SUPPORTS_FP_MODEL_STRICT)
-  target_compile_options(ultim PUBLIC "-fp-model=strict")
+  target_compile_options(ultim PUBLIC -fp-model=strict)
 endif ()
 check_c_compiler_flag ("-fp:strict" COMPILER_SUPPORTS_FP_STRICT)  
 if (COMPILER_SUPPORTS_FP_STRICT)
-  target_compile_options(ultim PUBLIC "-fp:strict")
+  target_compile_options(ultim PUBLIC -fp:strict)
 endif ()
 check_c_compiler_flag ("-mpc64" COMPILER_SUPPORTS_MPC64)  
 if (COMPILER_SUPPORTS_MPC64)
-  target_compile_options(ultim PUBLIC "-mpc64")
+  target_compile_options(ultim PUBLIC -mpc64)
 endif ()
 
 # IDEs should put the headers in a nice place
