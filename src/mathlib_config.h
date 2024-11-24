@@ -60,7 +60,7 @@ See also https://learn.microsoft.com/en-us/cpp/build/reference/zc-cplusplus. */
 #if defined(_MSC_VER)
 #   pragma fenv_access(on)
 #else
-#   pragma STDC FENV_ACCESS on
+#   pragma STDC FENV_ACCESS ON
 #endif
 
 /* Name of package */
