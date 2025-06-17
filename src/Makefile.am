@@ -25,7 +25,7 @@ noinst_HEADERS = \
 	branred.h  mpexp.h   sincos32.h  uexp.h      urem.h    dla.h    mpa2.h  \
 	mplog.h   trigo.h     ulog2.h   uroot.h \
 	LINUX_DPChange.h MSVC_DPChange.h \
-	DPChange.h endian.h
+	DPChange.h mathlib_endian.h
 
 install-data-local:
 	$(mkinstalldirs) "$(DESTDIR)/$(includedir)"

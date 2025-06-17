@@ -25,7 +25,7 @@
 /*             signArctan2                                              */
 /*             normalized                                               */
 /*                                                                      */
-/*  FILES NEEDED: dla.h endian.h mpa.h mydefs.h atnat2.h                */
+/*  FILES NEEDED: dla.h mathlib_endian.h mpa.h mydefs.h atnat2.h                */
 /*                mpatan.c mpatan2.c mpsqrt.c                           */
 /*                uatan.tbl                                             */
 /*                                                                      */
@@ -37,7 +37,7 @@
 /*                                                                      */
 /************************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "dla.h"
 #include "mpa.h"
 #include "MathLib.h"

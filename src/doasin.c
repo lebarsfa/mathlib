@@ -22,14 +22,14 @@
 /*                                                                    */
 /* FUNCTION: doasin                                                   */ 
 /*                                                                    */
-/* FILES NEEDED:endian.h mydefs.h dla.h doasin.h                      */
+/* FILES NEEDED:mathlib_endian.h mydefs.h dla.h doasin.h                      */
 /*              mpa.c                                                 */
 /*                                                                    */
 /* Compute arcsin(x,dx,v) of double-length number (x+dx) the result   */
 /* stored in v where v= v[0]+v[1] =arcsin(x+dx)                       */
 /**********************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h"
 #include "dla.h" 
 

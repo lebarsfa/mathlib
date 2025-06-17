@@ -23,7 +23,7 @@
 /*                                                                   */
 /*      FUNCTION:ulog                                                */
 /*                                                                   */
-/*      FILES NEEDED: dla.h endian.h mpa.h mydefs.h ulog.h           */
+/*      FILES NEEDED: dla.h mathlib_endian.h mpa.h mydefs.h ulog.h           */
 /*                    mpexp.c mplog.c mpa.c                          */
 /*                    ulog.tbl                                       */
 /*                                                                   */
@@ -35,7 +35,7 @@
 /*********************************************************************/
 
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "dla.h"
 #include "mpa.h"
 #include "MathLib.h"

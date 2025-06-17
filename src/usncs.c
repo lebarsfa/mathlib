@@ -36,7 +36,7 @@
 /*            csloww                                                        */
 /*            csloww1                                                       */
 /*            csloww2                                                       */
-/* FILES NEEDED: dla.h endian.h mpa.h mydefs.h  usncs.h                     */
+/* FILES NEEDED: dla.h mathlib_endian.h mpa.h mydefs.h  usncs.h                     */
 /*               branred.c sincos32.c dosincos.c mpa.c                      */
 /*               sincos.tbl                                                 */
 /*                                                                          */
@@ -48,7 +48,7 @@
 /****************************************************************************/
 
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h"
 #include "usncs.h"
 #include "MathLib.h"

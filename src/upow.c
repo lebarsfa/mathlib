@@ -24,7 +24,7 @@
 /*             log2                                                        */
 /*             log1                                                        */
 /*             checkint                                                    */
-/* FILES NEEDED: dla.h endian.h mpa.h mydefs.h                             */
+/* FILES NEEDED: dla.h mathlib_endian.h mpa.h mydefs.h                             */
 /*               halfulp.c mpexp.c mplog.c slowexp.c slowpow.c mpa.c       */
 /*                          uexp.c  upow.c  			           */  
 /*               root.tbl uexp.tbl upow.tbl                                */
@@ -35,7 +35,7 @@
 /*                                                                         */
 /***************************************************************************/
 #include "MathLib.h"
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "upow.h"
 #include "dla.h"
 #include "mydefs.h"

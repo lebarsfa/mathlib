@@ -27,7 +27,7 @@
 /*              cottab   -   internal routine                       */
 /*              tanpol   -   internal routine                       */
 /*                                                                  */
-/* FILES NEEDED: endian.h mydefs.h dla.h mpa.h mpa2.h trigo.h       */
+/* FILES NEEDED: mathlib_endian.h mydefs.h dla.h mpa.h mpa2.h trigo.h       */
 /*               branred.h branred.c dosincos.h dosincos.c          */
 /*               sincos32.h sincos32.c mptan.c slowcot.c            */
 /*               ucot.h ucot.tbl sincos.tbl                         */
@@ -37,7 +37,7 @@
 
 
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h"
 #include "ucot.h"
 #include "ucot.tbl"

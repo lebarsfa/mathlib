@@ -22,7 +22,7 @@
 /* MODULE_NAME:halfulp.c                                                */ 
 /*                                                                      */ 
 /*  FUNCTIONS:halfulp                                                   */
-/*  FILES NEEDED: mydefs.h dla.h endian.h                               */
+/*  FILES NEEDED: mydefs.h dla.h mathlib_endian.h                               */
 /*                uroot.c                                               */
 /*                                                                      */
 /*Routine halfulp(double x, double y) computes x^y where result does    */
@@ -35,7 +35,7 @@
 /*3. if x can be represented by  x=2**n for some integer n.             */
 /************************************************************************/
 
-#include "endian.h"        
+#include "mathlib_endian.h"        
 #include "mydefs.h"
 #include "dla.h"
 

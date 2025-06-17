@@ -23,7 +23,7 @@
 /*                                                                      */
 /*     FUNCTIONS:  mplog                                                */
 /*                                                                      */
-/*     FILES NEEDED: endian.h mpa.h  mplog.h                            */
+/*     FILES NEEDED: mathlib_endian.h mpa.h  mplog.h                            */
 /*                    mpexp.c                                           */
 /*                                                                      */
 /* Multi-Precision logarithm function subroutine (for precision p >= 4, */
@@ -34,7 +34,7 @@
 /* bound of at most 2**(-52). The routine improves the accuracy of y.   */
 /*                                                                      */
 /************************************************************************/
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 
 void mpexp(mp_no *, mp_no *, int);

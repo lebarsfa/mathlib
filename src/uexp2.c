@@ -24,14 +24,14 @@
 /*                                                                  */
 /* FUNCTIONS:   uexp2                                               */
 /*                                                                  */
-/* FILES NEEDED: endian.h mydefs.h uexp.h uexp.tbl slowexp2.c       */
+/* FILES NEEDED: mathlib_endian.h mydefs.h uexp.h uexp.tbl slowexp2.c       */
 /*               mpa.h mpa2.h mpa.c  mpexp.h mpexp.c                */
 /*                                                                  */
 /* Routine computes uexp2() - the "ultimate" 2**x                   */
 /********************************************************************/
 
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include  "uexp.h"
 #include "mydefs.h"
 #include "uexp.tbl"

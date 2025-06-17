@@ -25,7 +25,7 @@
 /* FUNCTIONS:   dubsin                                              */
 /*              dubcos                                              */
 /*              docos                                               */
-/* FILES NEEDED: endian.h mydefs.h dla.h dosincos.h                 */
+/* FILES NEEDED: mathlib_endian.h mydefs.h dla.h dosincos.h                 */
 /*               sincos.tbl                                         */
 /*                                                                  */
 /* Routines compute sin() and cos() as Double-Length numbers         */
@@ -33,7 +33,7 @@
 
 
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h" 
 #include "sincos.tbl"
 #include "dla.h"

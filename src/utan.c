@@ -23,7 +23,7 @@
 /*  FUNCTIONS: utan                                                  */
 /*             tanMp                                                 */
 /*                                                                   */
-/*  FILES NEEDED:dla.h endian.h mpa.h mydefs.h utan.h                */
+/*  FILES NEEDED:dla.h mathlib_endian.h mpa.h mydefs.h utan.h                */
 /*               branred.c sincos32.c mptan.c                        */
 /*               utan.tbl                                            */
 /*                                                                   */
@@ -33,7 +33,7 @@
 /* round to nearest mode of IEEE 754 standard.                       */
 /*                                                                   */
 /*********************************************************************/
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "dla.h"
 #include "mpa.h"
 #include "MathLib.h"

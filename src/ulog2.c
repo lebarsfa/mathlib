@@ -25,7 +25,7 @@
 /* FUNCTIONS:   ulog2                                                 */
 /*              logg2    -   internal routine                         */
 /*                                                                    */
-/* FILES NEEDED: endian.h mydefs.h ulog2.h upow.h upow.tbl dla.h      */ 
+/* FILES NEEDED: mathlib_endian.h mydefs.h ulog2.h upow.h upow.tbl dla.h      */ 
 /*               mpa.h mpa2.h mpa.c mplog.h mplog.c mpexp.h mpexp.c   */
 /*               slowlog2.c                                           */ 
 /*                                                                    */
@@ -33,7 +33,7 @@
 /**********************************************************************/
 
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "upow.h"
 #include "dla.h"
 #include "mydefs.h"

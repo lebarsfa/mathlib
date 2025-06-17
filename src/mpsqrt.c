@@ -23,13 +23,13 @@
 /*  FUNCTION:mpsqrt                                                         */
 /*           fastiroot                                                      */
 /*                                                                          */
-/* FILES NEEDED:endian.h mpa.h mpsqrt.h                                     */
+/* FILES NEEDED:mathlib_endian.h mpa.h mpsqrt.h                                     */
 /*              mpa.c                                                       */
 /* Multi-Precision square root function subroutine for precision p >= 4.    */
 /* The relative error is bounded by 3.501*r**(1-p), where r=2**24.          */
 /*                                                                          */
 /****************************************************************************/
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 
 /****************************************************************************/

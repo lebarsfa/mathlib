@@ -22,7 +22,7 @@
 /*                                                                   */
 /* FUNCTION:    usqrt                                                */
 /*                                                                   */
-/* FILES NEEDED: dla.h endian.h mydefs.h uroot.h                     */
+/* FILES NEEDED: dla.h mathlib_endian.h mydefs.h uroot.h                     */
 /*               uroot.tbl                                           */
 /*                                                                   */
 /* An ultimate sqrt routine. Given an IEEE double machine number x   */
@@ -33,7 +33,7 @@
 /*                                                                   */
 /*********************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h"
 #include "dla.h"
 #include "MathLib.h"

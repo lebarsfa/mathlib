@@ -23,7 +23,7 @@
 /*  FUNCTION:uexp                                                          */
 /*           exp1                                                          */
 /*                                                                         */
-/* FILES NEEDED:dla.h endian.h mpa.h mydefs.h uexp.h                       */
+/* FILES NEEDED:dla.h mathlib_endian.h mpa.h mydefs.h uexp.h                       */
 /*              mpa.c mpexp.x slowexp.c                                    */
 /*                                                                         */
 /* An ultimate exp routine. Given an IEEE double machine number x          */
@@ -33,7 +33,7 @@
 /*                                                                         */
 /***************************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include  "uexp.h"
 #include "mydefs.h"
 #include "MathLib.h"

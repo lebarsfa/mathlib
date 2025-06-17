@@ -22,7 +22,7 @@
 /*                                                                */
 /*     FUNCTIONS: uasin                                           */
 /*                uacos                                           */
-/* FILES NEEDED: dla.h endian.h mpa.h mydefs.h  usncs.h           */
+/* FILES NEEDED: dla.h mathlib_endian.h mpa.h mydefs.h  usncs.h           */
 /*               doasin.c sincos32.c dosincos.c mpa.c             */
 /*               sincos.tbl  asincos.tbl  powtwo.tbl root.tbl     */
 /*                                                                */
@@ -33,7 +33,7 @@
 /* round to nearest mode of IEEE 754 standard.                    */
 /*                                                                */
 /******************************************************************/
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h"
 #include "asincos.tbl"
 #include "root.tbl"

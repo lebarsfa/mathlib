@@ -22,7 +22,7 @@
 /*                                                                    */
 /* FUNCTION: mptan                                                    */
 /*                                                                    */
-/* FILES NEEDED: endian.h  mpa.h                                      */
+/* FILES NEEDED: mathlib_endian.h  mpa.h                                      */
 /*               mpa.c  sincos32.c branred.c                          */
 /*                                                                    */
 /* Multi-Precision tan() function subroutine, for p=32.  It is based  */
@@ -34,7 +34,7 @@
 /* significant bits.                                                  */
 /*                                                                    */
 /**********************************************************************/
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 
 int mpranred(double, mp_no *, int);

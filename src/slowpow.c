@@ -32,7 +32,7 @@
 /* calls to mpexp routine                                                */
 /*************************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 
 void mpexp(mp_no *x, mp_no *y, int p);

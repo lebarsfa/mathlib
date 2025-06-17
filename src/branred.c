@@ -23,7 +23,7 @@
 /*                                                                 */
 /* FUNCTIONS:   branred                                            */
 /*                                                                 */ 
-/* FILES NEEDED: branred.h mydefs.h endian.h mpa.h                 */
+/* FILES NEEDED: branred.h mydefs.h mathlib_endian.h mpa.h                 */
 /*               mha.c                                             */
 /*                                                                 */
 /* Routine  branred() performs range  reduction of a double number */
@@ -33,7 +33,7 @@
 /* of x.                                                           */
 /*******************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h"
 #include "branred.h"
 

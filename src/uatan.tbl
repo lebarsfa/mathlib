@@ -2,7 +2,7 @@
 /* TABLES FOR THE uatan() FUNCTION                               */
 /****************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 
 #ifdef BIG_ENDI
 

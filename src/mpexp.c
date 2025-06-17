@@ -22,14 +22,14 @@
 /*                                                                       */
 /*   FUNCTIONS: mpexp                                                    */
 /*                                                                       */
-/*   FILES NEEDED: mpa.h endian.h mpexp.h                                */
+/*   FILES NEEDED: mpa.h mathlib_endian.h mpexp.h                                */
 /*                 mpa.c                                                 */
 /*                                                                       */
 /* Multi-Precision exponential function subroutine                       */
 /*   (  for p >= 4, 2**(-55) <= abs(x) <= 1024     ).                    */
 /*************************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 #include "mpexp.h"
 

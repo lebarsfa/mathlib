@@ -23,7 +23,7 @@
 /*                                                                */
 /* FUNCTIONS:mpatan                                               */
 /*                                                                */
-/* FILES NEEDED: mpa.h endian.h mpatan.h                          */
+/* FILES NEEDED: mpa.h mathlib_endian.h mpatan.h                          */
 /*               mpa.c                                            */
 /*                                                                */
 /* Multi-Precision Atan function subroutine, for precision p >= 4.*/
@@ -31,7 +31,7 @@
 /* where r=2**24.                                                 */
 /******************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 void mpsqrt(mp_no *, mp_no *, int);
 

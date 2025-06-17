@@ -28,7 +28,7 @@
 /*Converting from double precision to Multi-precision and calculating     */
 /* e^x                                                                    */
 /**************************************************************************/
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 
 void mpexp(mp_no *x, mp_no *y, int p);

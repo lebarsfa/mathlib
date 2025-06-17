@@ -31,7 +31,7 @@
 /*             mpsin1                                           */
 /*             mpcos1                                           */
 /*                                                              */
-/* FILES NEEDED: endian.h mpa.h sincos32.h                      */
+/* FILES NEEDED: mathlib_endian.h mpa.h sincos32.h                      */
 /*               mpa.c                                          */
 /*                                                              */
 /* Multi Precision sin() and cos() function with p=32  for sin()*/
@@ -40,7 +40,7 @@
 /* a double number x into multi precision number   y,           */
 /* such that y=x-n*pi/2, abs(y)<pi/4,  n=0,+-1,+-2,....         */
 /****************************************************************/
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 #include "sincos32.h"
 

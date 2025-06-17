@@ -30,7 +30,7 @@
 /*                                                                        */
 /* ************************************************************************/
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mydefs.h"
 #include "urem.h"
 #include "MathLib.h"

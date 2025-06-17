@@ -43,7 +43,7 @@
 /************************************************************************/
 
 
-#include "endian.h"
+#include "mathlib_endian.h"
 #include "mpa.h"
 #include "mpa2.h"
 /* mcr() compares the sizes of the mantissas of two multiple precision  */
