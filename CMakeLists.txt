@@ -36,10 +36,6 @@ install(TARGETS ultim
 #        INCLUDES DESTINATION include
         )
 
-install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/MathLib.h ${CMAKE_CURRENT_SOURCE_DIR}/src/mathlib_config.h ${CMAKE_CURRENT_BINARY_DIR}/src/mathlib_configuration.h
-    DESTINATION include
-)
-
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
     mathlibConfigVersion.cmake

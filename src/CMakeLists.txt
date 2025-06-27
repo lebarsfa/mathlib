@@ -117,6 +117,10 @@ endif()
   endif()
 #endif()
 
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/MathLib.h ${CMAKE_CURRENT_SOURCE_DIR}/src/mathlib_config.h ${CMAKE_CURRENT_BINARY_DIR}/src/mathlib_configuration.h
+    DESTINATION include
+)
+
 # IDEs should put the headers in a nice place
 #source_group(
 #  TREE "${PROJECT_SOURCE_DIR}/include"
