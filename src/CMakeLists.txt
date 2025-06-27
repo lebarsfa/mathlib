@@ -44,9 +44,6 @@ file(GLOB TABLE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.tbl")
 # Make an automatic library - will be static or dynamic based on user setting
 add_library(ultim ${SOURCE_LIST} ${HEADER_LIST} ${TABLE_LIST})
 
-# Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
-add_library(mathlib::ultim ALIAS ultim)
-
 # We need this directory, and users of our library will need it too
 # Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
 target_include_directories(ultim 
@@ -116,6 +113,12 @@ endif()
     add_compile_options(-mpc64)
   endif()
 #endif()
+
+if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+  install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/MathLib.h ${CMAKE_CURRENT_SOURCE_DIR}/mathlib_config.h ${CMAKE_CURRENT_BINARY_DIR}/mathlib_configuration.h
+      DESTINATION include
+  )
+endif()
 
 # IDEs should put the headers in a nice place
 #source_group(
