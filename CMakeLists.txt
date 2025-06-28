@@ -43,7 +43,7 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/src/MathLib.h ${CMAKE_CURRENT_SOURCE_D
 include(CMakePackageConfigHelpers)
 write_basic_package_version_file(
     mathlibConfigVersion.cmake
-    VERSION ${PACKAGE_VERSION}
+    #VERSION ${PACKAGE_VERSION}
     COMPATIBILITY AnyNewerVersion
     )
   
