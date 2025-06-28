@@ -45,7 +45,7 @@ file(GLOB TABLE_LIST CONFIGURE_DEPENDS "${mathlib_SOURCE_DIR}/src/*.tbl")
 add_library(ultim ${SOURCE_LIST} ${HEADER_LIST} ${TABLE_LIST})
 
 # Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
-add_library(mathlib::ultim ALIAS ultim)
+#add_library(mathlib::ultim ALIAS ultim)
 
 # We need this directory, and users of our library will need it too
 # Inspired from https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
