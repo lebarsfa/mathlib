@@ -112,28 +112,37 @@ unsigned  short NewDPStatus=0;
 /* 
 Warning: even if a control word might exist on almost all platforms, it might
 not be possible to manipulate it the same way...
+
+Also, sometimes it might be larger than an unsigned short...
+
 */
 #if defined(__linux__) && (defined(__i386__) || defined(__x86_64__))
 #   define CTRLWORD(v) (v).__control_word
+#elif defined(__linux__) && defined(__arm__)
+#   define CTRLWORD(v) (v).__cw
 #elif defined(__linux__) && defined(__aarch64__)
 #   define CTRLWORD(v) (v).__fpcr
-#elif defined(__APPLE__) && defined(__x86_64__)
+#elif defined(__APPLE__) && (defined(__i386__) || defined(__x86_64__))
 #   define CTRLWORD(v) (v).__control
-#elif defined(__APPLE__) && defined(__aarch64__)
+#elif defined(__APPLE__) && defined(__arm__)
+#   define CTRLWORD(v) (v).__fpscr
+#elif defined(__APPLE__) && (defined(__arm64__) || defined(__aarch64__))
 #   define CTRLWORD(v) (v).__fpcr
-/* _Fe_ctl might be larger than an unsigned short... */
-/*
-#elif (defined(_MSC_VER) || defined(__BORLANDC__)) && (defined(_M_IX86) || defined(_M_X64))
+#elif defined(_MSC_VER) || defined(__BORLANDC__) /*() && (defined(_M_IX86) || defined(_M_X64) || defined(_M_ARM) || defined(_M_ARM64) || defined(_M_ARM64EC))*/
 #   define CTRLWORD(v) (v)._Fe_ctl
-*/
+#elif defined(__MINGW64_VERSION_MAJOR) && (__MINGW64_VERSION_MAJOR >= 13)
+#   define CTRLWORD(v) (v)._Fe_ctl
 #elif defined(__MINGW32__) && (defined(__i386__) || defined(_M_IX86) || defined(__x86_64__) || defined(_M_X64))
 #   define CTRLWORD(v) (v).__control_word
+#elif defined(__MINGW32__) && (defined(__arm__) || defined(_ARM_) || defined(__arm64__) || defined(__aarch64__) || defined(_ARM64_))
+#   define CTRLWORD(v) (v).__cw
 #elif defined(__arm__) || defined(_ARM_)
 #   define CTRLWORD(v) (v).__cw
-#elif defined(__aarch64__) || defined(_ARM64_)
+#elif defined(__arm64__) || defined(__aarch64__) || defined(_ARM64_)
 #   define CTRLWORD(v) (v).__fpcr
 #else
-#   define CTRLWORD(v) (v).__control_word
+/*#   define CTRLWORD(v) (v).__control_word*/
+#   define CTRLWORD(v) (v)
 #endif
 
 /* Function to change precision control to double and round mode to nearest */
