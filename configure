@@ -12954,6 +12954,52 @@ fi
 CFLAGS="-g0 -O2 $CFLAGS"
 
 # See # https://gcc.gnu.org/wiki/FloatingPointMath
+# Checking for availability of -frounding-math
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+OLD_CFLAGS=$CFLAGS
+CFLAGS="-frounding-math"
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether the C compiler accepts -frounding-math" >&5
+printf %s "checking whether the C compiler accepts -frounding-math... " >&6; }
+cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+/* end confdefs.h.  */
+
+int
+main (void)
+{
+
+  ;
+  return 0;
+}
+_ACEOF
+if ac_fn_c_try_compile "$LINENO"
+then :
+  has_frounding_math_opt=yes
+else $as_nop
+  has_frounding_math_opt=no
+fi
+rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ${has_frounding_math_opt}" >&5
+printf "%s\n" "${has_frounding_math_opt}" >&6; }
+CFLAGS=${OLD_CFLAGS}
+ac_ext=c
+ac_cpp='$CPP $CPPFLAGS'
+ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
+ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
+ac_compiler_gnu=$ac_cv_c_compiler_gnu
+
+if test "${has_frounding_math_opt}" = yes; then
+    CFLAGS="${CFLAGS} -frounding-math"
+
+printf "%s\n" "#define HAVE_FROUNDING_MATH_OPTION 1" >>confdefs.h
+
+fi
+
+# See # https://gcc.gnu.org/wiki/FloatingPointMath
 # Checking for availability of -ffloat-store
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -12999,8 +13045,8 @@ printf "%s\n" "#define HAVE_FFLOAT_STORE_OPTION 1" >>confdefs.h
 
 fi
 
-# See # https://gcc.gnu.org/wiki/FloatingPointMath
-# Checking for availability of -frounding-math
+# See # https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+# Checking for availability of -fexcess-precision=standard
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -13008,9 +13054,9 @@ ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 OLD_CFLAGS=$CFLAGS
-CFLAGS="-frounding-math"
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether the C compiler accepts -frounding-math" >&5
-printf %s "checking whether the C compiler accepts -frounding-math... " >&6; }
+CFLAGS="-fexcess-precision=standard"
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: checking whether the C compiler accepts -fexcess-precision=standard" >&5
+printf %s "checking whether the C compiler accepts -fexcess-precision=standard... " >&6; }
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
@@ -13024,13 +13070,13 @@ main (void)
 _ACEOF
 if ac_fn_c_try_compile "$LINENO"
 then :
-  has_frounding_math_opt=yes
+  has_fexcess_precision_standard_opt=yes
 else $as_nop
-  has_frounding_math_opt=no
+  has_fexcess_precision_standard_opt=no
 fi
 rm -f core conftest.err conftest.$ac_objext conftest.beam conftest.$ac_ext
-{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ${has_frounding_math_opt}" >&5
-printf "%s\n" "${has_frounding_math_opt}" >&6; }
+{ printf "%s\n" "$as_me:${as_lineno-$LINENO}: result: ${has_fexcess_precision_standard_opt}" >&5
+printf "%s\n" "${has_fexcess_precision_standard_opt}" >&6; }
 CFLAGS=${OLD_CFLAGS}
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
@@ -13038,10 +13084,10 @@ ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
-if test "${has_frounding_math_opt}" = yes; then
-    CFLAGS="${CFLAGS} -frounding-math"
+if test "${has_fexcess_precision_standard_opt}" = yes; then
+    CFLAGS="${CFLAGS} -fexcess-precision=standard"
 
-printf "%s\n" "#define HAVE_FROUNDING_MATH_OPTION 1" >>confdefs.h
+printf "%s\n" "#define HAVE_FEXCESS_PRECISION_STANDARD_OPTION 1" >>confdefs.h
 
 fi
 

@@ -173,6 +173,22 @@ AC_CHECK_HEADERS([fenv.h])
 CFLAGS="-g0 -O2 $CFLAGS"
 
 # See # https://gcc.gnu.org/wiki/FloatingPointMath
+# Checking for availability of -frounding-math
+AC_LANG([C])
+OLD_CFLAGS=$CFLAGS
+CFLAGS="-frounding-math"
+AC_MSG_CHECKING(whether the C compiler accepts -frounding-math)
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[]])],[has_frounding_math_opt=yes],[has_frounding_math_opt=no])
+AC_MSG_RESULT(${has_frounding_math_opt})
+CFLAGS=${OLD_CFLAGS}
+AC_LANG([C])
+if test "${has_frounding_math_opt}" = yes; then
+    CFLAGS="${CFLAGS} -frounding-math"
+    AC_DEFINE(HAVE_FROUNDING_MATH_OPTION,1,
+        [Define this to 1 if the compiler supports the "-frounding-math" option])
+fi
+
+# See # https://gcc.gnu.org/wiki/FloatingPointMath
 # Checking for availability of -ffloat-store
 AC_LANG([C])
 OLD_CFLAGS=$CFLAGS
@@ -188,20 +204,20 @@ if test "${has_ffloat_store_opt}" = yes; then
         [Define this to 1 if the compiler supports the "-ffloat-store" option])
 fi
 
-# See # https://gcc.gnu.org/wiki/FloatingPointMath
-# Checking for availability of -frounding-math
+# See # https://gcc.gnu.org/onlinedocs/gcc/Optimize-Options.html
+# Checking for availability of -fexcess-precision=standard
 AC_LANG([C])
 OLD_CFLAGS=$CFLAGS
-CFLAGS="-frounding-math"
-AC_MSG_CHECKING(whether the C compiler accepts -frounding-math)
-AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[]])],[has_frounding_math_opt=yes],[has_frounding_math_opt=no])
-AC_MSG_RESULT(${has_frounding_math_opt})
+CFLAGS="-fexcess-precision=standard"
+AC_MSG_CHECKING(whether the C compiler accepts -fexcess-precision=standard)
+AC_COMPILE_IFELSE([AC_LANG_PROGRAM([[]], [[]])],[has_fexcess_precision_standard_opt=yes],[has_fexcess_precision_standard_opt=no])
+AC_MSG_RESULT(${has_fexcess_precision_standard_opt})
 CFLAGS=${OLD_CFLAGS}
 AC_LANG([C])
-if test "${has_frounding_math_opt}" = yes; then
-    CFLAGS="${CFLAGS} -frounding-math"
-    AC_DEFINE(HAVE_FROUNDING_MATH_OPTION,1,
-        [Define this to 1 if the compiler supports the "-frounding-math" option])
+if test "${has_fexcess_precision_standard_opt}" = yes; then
+    CFLAGS="${CFLAGS} -fexcess-precision=standard"
+    AC_DEFINE(HAVE_FEXCESS_PRECISION_STANDARD_OPTION,1,
+        [Define this to 1 if the compiler supports the "-fexcess-precision=standard" option])
 fi
 
 # See https://stackoverflow.com/questions/64036879/differing-floating-point-calculation-results-between-x86-64-and-armv8-2-a
