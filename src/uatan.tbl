@@ -4,6 +4,10 @@
 
 #include "mathlib_endian.h"
 
+#ifdef __GNUC__
+#pragma GCC diagnostic ignored "-Wmissing-braces"
+#endif
+
 #ifdef BIG_ENDI
 
   static const number
