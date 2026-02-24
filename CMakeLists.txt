@@ -23,12 +23,14 @@ if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
 
 endif()
 
+option(MATHLIB_INSTALL "Generate the install target" ON)
+
 # The compiled library code is here
 add_subdirectory(src)
 
 add_library(mathlib::ultim ALIAS ultim)
 
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if (MATHLIB_INSTALL)
   # From https://gitlab.com/CLIUtils/modern-cmake/-/blob/b47192867e86e5f00f70ec860638a28473edc8bf/chapters/install/installing.md
   # and https://unclejimbo.github.io/2018/06/08/Modern-CMake-for-Library-Developers/
   install(TARGETS ultim
@@ -57,7 +59,9 @@ if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
                 "${CMAKE_CURRENT_BINARY_DIR}/mathlibConfigVersion.cmake"
           DESTINATION share/cmake/mathlib
           )
-else()
+
   export(TARGETS ultim NAMESPACE mathlib::
          FILE mathlibTargets.cmake)
+  set(CMAKE_EXPORT_PACKAGE_REGISTRY ON)
+  export(PACKAGE ultim)
 endif()

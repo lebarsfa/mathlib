@@ -49,7 +49,7 @@ add_library(ultim ${SOURCE_LIST} ${HEADER_LIST} ${TABLE_LIST})
 target_include_directories(ultim 
 	PUBLIC
 		"$<INSTALL_INTERFACE:include>"
-		"$<BUILD_INTERFACE:${PROJECT_BINARY_DIR}/src>"
+		"$<BUILD_INTERFACE:${CMAKE_CURRENT_BINARY_DIR}>"
 		"$<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}>"
 )
 
@@ -105,7 +105,7 @@ endif()
   endif()
 #endif()
 
-if (CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+if (MATHLIB_INSTALL)
   install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/MathLib.h ${CMAKE_CURRENT_SOURCE_DIR}/mathlib_config.h ${CMAKE_CURRENT_BINARY_DIR}/mathlib_configuration.h
       DESTINATION include
   )
