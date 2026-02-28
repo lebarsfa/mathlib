@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.14...3.25)
 # Project name and a few useful settings. Other commands can pick up the results
 project(
   mathlib
-  VERSION 2.1.2
+  VERSION 2.1.2.20260215
   DESCRIPTION "IBM Accurate Portable Mathlib"
   LANGUAGES C)
 
